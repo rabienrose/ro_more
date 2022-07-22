@@ -12,11 +12,17 @@ func set_tar_pos(_tar_pos):
     tar_pos=_tar_pos
     cur_path_ind=-1
     path = unit.map.cal_path(unit.cur_pos, _tar_pos)
-    status=RUNNING
+    if path.size()==0:
+        status=FAIL
+    else:
+        status=RUNNING
 
 func act():
     if status!=RUNNING:
         return 
+    if path.size()==0:
+        status=FAIL
+        return
     if mov_routine.status==RUNNING:
         mov_routine.act()
         return
@@ -27,7 +33,7 @@ func act():
             return
         else:
             mov_routine.set_tar_pos(path[cur_path_ind])
-            mov_routine.status==RUNNING
+            mov_routine.status=RUNNING
     
 func on_create(_unit):
     .on_create(_unit)

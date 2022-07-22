@@ -27,7 +27,7 @@ func pos_2_pixel(pos):
     return Vector2(Global.pixel_p_cell*pos.x+Global.pixel_p_cell/2, Global.pixel_p_cell*pos.y+Global.pixel_p_cell/2)
 
 func cal_path(s_pos, e_pos):
-    return path_finder.find_path(cells, s_pos, e_pos)
+    return path_finder.find_path(self, s_pos, e_pos)
 
 func _ready():
     path_finder=PathFind.new()
@@ -58,9 +58,8 @@ func _ready():
     for i in range(mob_count):
         var mob_res = load(Global.mob_res_path+mob_name+".tscn")
         var mob_obj = mob_res.instance()
-        var cell = get_rand_free_cell()
-        var pixel_coor = pos_2_pixel(cell.pos)
-        mob_obj.position=pixel_coor
         mob_obj.on_create(self)
+        var cell = get_rand_free_cell()
+        mob_obj.set_cell_pos(cell.pos)
         units_root.add_child(mob_obj)
 

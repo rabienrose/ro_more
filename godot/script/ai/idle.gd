@@ -13,5 +13,5 @@ func reset(t):
 func act():
     if status!=RUNNING:
         return
-    if OS.get_ticks_msec()-s_t<=duration_t:
+    if OS.get_ticks_msec()-s_t>duration_t:
         status=SUCC
