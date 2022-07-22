@@ -1,0 +1,101 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Object",
+"class": "Cell",
+"language": "GDScript",
+"path": "res://script/map_cell.gd"
+}, {
+"base": "Routine",
+"class": "Idle",
+"language": "GDScript",
+"path": "res://script/ai/idle.gd"
+}, {
+"base": "Routine",
+"class": "Move",
+"language": "GDScript",
+"path": "res://script/ai/move.gd"
+}, {
+"base": "Object",
+"class": "PathFind",
+"language": "GDScript",
+"path": "res://script/algo/path_find.gd"
+}, {
+"base": "Object",
+"class": "PriorityQueue",
+"language": "GDScript",
+"path": "res://script/algo/priority_queue.gd"
+}, {
+"base": "Object",
+"class": "Routine",
+"language": "GDScript",
+"path": "res://script/ai/routine.gd"
+}, {
+"base": "Routine",
+"class": "Selector",
+"language": "GDScript",
+"path": "res://script/ai/selector.gd"
+}, {
+"base": "Routine",
+"class": "Sequence",
+"language": "GDScript",
+"path": "res://script/ai/sequence.gd"
+}, {
+"base": "Node2D",
+"class": "Unit",
+"language": "GDScript",
+"path": "res://script/unit.gd"
+}, {
+"base": "Routine",
+"class": "WalkTo",
+"language": "GDScript",
+"path": "res://script/ai/walk_to.gd"
+}, {
+"base": "Routine",
+"class": "Wander",
+"language": "GDScript",
+"path": "res://script/ai/wander.gd"
+} ]
+_global_script_class_icons={
+"Cell": "",
+"Idle": "",
+"Move": "",
+"PathFind": "",
+"PriorityQueue": "",
+"Routine": "",
+"Selector": "",
+"Sequence": "",
+"Unit": "",
+"WalkTo": "",
+"Wander": ""
+}
+
+[application]
+
+config/name="ro_more"
+config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://script/global.gd"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
