@@ -55,6 +55,8 @@ func find_path(map, s_pos, e_pos):
         for i in range(8):
             var t_dir = Global.dir_2_vec(i)
             var next_pos=cur_node["pos"]+t_dir
+            if map.check_pos_in_map(next_pos)==false:
+                continue
             var next_c_ind = map.pos_2_cind(next_pos)
             if map.cells[next_c_ind].b_free==false:
                 continue

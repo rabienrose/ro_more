@@ -1,6 +1,6 @@
 extends Unit
 
-var sprite_name="mob1"
+class_name Mob
 
 func _ready():
     pass # Replace with function body.

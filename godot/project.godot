@@ -9,15 +9,35 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Routine",
+"class": "Attack",
+"language": "GDScript",
+"path": "res://script/ai/attack.gd"
+}, {
 "base": "Object",
 "class": "Cell",
 "language": "GDScript",
 "path": "res://script/map_cell.gd"
 }, {
 "base": "Routine",
+"class": "Follow",
+"language": "GDScript",
+"path": "res://script/ai/follow.gd"
+}, {
+"base": "Routine",
+"class": "FollowAttack",
+"language": "GDScript",
+"path": "res://script/ai/follow_attack.gd"
+}, {
+"base": "Routine",
 "class": "Idle",
 "language": "GDScript",
 "path": "res://script/ai/idle.gd"
+}, {
+"base": "Unit",
+"class": "Mob",
+"language": "GDScript",
+"path": "res://script/mob.gd"
 }, {
 "base": "Routine",
 "class": "Move",
@@ -33,6 +53,11 @@ _global_script_classes=[ {
 "class": "PriorityQueue",
 "language": "GDScript",
 "path": "res://script/algo/priority_queue.gd"
+}, {
+"base": "Routine",
+"class": "Repeat",
+"language": "GDScript",
+"path": "res://script/ai/repeat.gd"
 }, {
 "base": "Object",
 "class": "Routine",
@@ -65,11 +90,16 @@ _global_script_classes=[ {
 "path": "res://script/ai/wander.gd"
 } ]
 _global_script_class_icons={
+"Attack": "",
 "Cell": "",
+"Follow": "",
+"FollowAttack": "",
 "Idle": "",
+"Mob": "",
 "Move": "",
 "PathFind": "",
 "PriorityQueue": "",
+"Repeat": "",
 "Routine": "",
 "Selector": "",
 "Sequence": "",

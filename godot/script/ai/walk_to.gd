@@ -10,7 +10,7 @@ var mov_routine
 
 func set_tar_pos(_tar_pos):
     tar_pos=_tar_pos
-    cur_path_ind=-1
+    cur_path_ind=0
     path = unit.map.cal_path(unit.cur_pos, _tar_pos)
     if path.size()==0:
         status=FAIL

@@ -3,13 +3,29 @@ extends Node2D
 class_name Unit
 
 var map
+var frame_delta
+var cur_pos
+var brain
 
 var mov_spd=64
-var frame_delta
+var atk=5
+var hp=20
+var atk_range=3
+var atk_spd=1
 
-var cur_pos
+export (NodePath) var hp_bar_path
+export (NodePath) var atk_bar_path
 
-var brain
+func attack(target):
+    target.hp=target.hp-atk
+    target.update_board()
+
+func update_board():
+    get_node(hp_bar_path).text="hp:"+str(hp)
+    get_node(atk_bar_path).text="atk:"+str(atk)
+
+func get_brain():
+    print("unit cannot run there!!")
 
 func set_cell_pos(pos_c):
     cur_pos=pos_c
@@ -23,9 +39,9 @@ func on_create(_map):
     map=_map
 
 func _ready():
-    brain=Wander.new()
-    brain.on_create(self)
+    brain=get_brain()
     brain.status=Routine.RUNNING
+    update_board()
 
 func _process(delta):
     frame_delta=delta

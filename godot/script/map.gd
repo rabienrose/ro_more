@@ -4,8 +4,8 @@ export (NodePath) var ground_path
 export (NodePath) var cam_path
 
 var map_name="map2"
-var mob_count=3
-var mob_name="mob"
+var mob_count=1
+var mob_name="mob_wander"
 var map_w
 var map_h
 var cells
@@ -28,6 +28,12 @@ func pos_2_pixel(pos):
 
 func cal_path(s_pos, e_pos):
     return path_finder.find_path(self, s_pos, e_pos)
+
+func check_pos_in_map(pos):
+    if pos.x<0 or pos.y<0 or pos.x>=map_w or pos.y>=map_h:
+        return false
+    else:
+        return true
 
 func _ready():
     path_finder=PathFind.new()
@@ -55,11 +61,21 @@ func _ready():
                 new_cell.b_free=false
             cells[pos_2_cind(Vector2(x,y))]=new_cell
     image.unlock()
-    for i in range(mob_count):
-        var mob_res = load(Global.mob_res_path+mob_name+".tscn")
-        var mob_obj = mob_res.instance()
-        mob_obj.on_create(self)
-        var cell = get_rand_free_cell()
-        mob_obj.set_cell_pos(cell.pos)
-        units_root.add_child(mob_obj)
+    var mob_res = load(Global.mob_res_path+"mob_attack.tscn")
+    var mob_follow = mob_res.instance()
+    mob_follow.on_create(self)
+    var cell = get_rand_free_cell()
+    mob_follow.set_cell_pos(cell.pos)
+    mob_follow.name="attack"
+    units_root.add_child(mob_follow)
+
+    mob_res = load(Global.mob_res_path+"mob_wander.tscn")
+    var mob_wander = mob_res.instance()
+    mob_wander.on_create(self)
+    cell = get_rand_free_cell()
+    mob_wander.set_cell_pos(cell.pos)
+    mob_wander.name="wander"
+    units_root.add_child(mob_wander)
+
+    mob_follow.set_tar(mob_wander)
 

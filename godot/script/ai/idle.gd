@@ -5,10 +5,12 @@ class_name Idle
 var duration_t
 var s_t
 
-func reset(t):
-    duration_t=t
+func reset():
+    .reset()
     s_t=OS.get_ticks_msec()
-    status=RUNNING
+
+func set_duration(t):
+    duration_t=t
 
 func act():
     if status!=RUNNING:

@@ -6,7 +6,10 @@ var routines=[]
 var cur_routine=-1
 
 func reset():
+    .reset()
     cur_routine=0
+    for r in routines:
+        r.reset()
 
 func act():
     while true:

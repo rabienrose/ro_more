@@ -6,7 +6,10 @@ var routines=[]
 var cur_routine=-1
 
 func reset():
+    .reset()
     cur_routine=-1
+    for r in routines:
+        r.reset()
 
 func act():
     if status!=RUNNING:
@@ -20,10 +23,10 @@ func act():
             cur_routine=cur_routine+1
             if cur_routine>=routines.size():
                 status=SUCC
-                return
+                break
             routines[cur_routine].status=RUNNING
         elif routines[cur_routine].status==FAIL:
             status=FAIL
-            return
+            break
         else:
-            return
+            break

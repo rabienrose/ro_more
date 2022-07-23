@@ -7,6 +7,9 @@ enum {RUNNING, FAIL, SUCC}
 var status=SUCC
 var unit
 
+func reset():
+    status=SUCC
+
 func on_create(_unit):
     unit=_unit
 
