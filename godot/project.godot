@@ -15,6 +15,16 @@ _global_script_classes=[ {
 "path": "res://script/ai/attack.gd"
 }, {
 "base": "Object",
+"class": "Buf",
+"language": "GDScript",
+"path": "res://script/buf/buf.gd"
+}, {
+"base": "Buf",
+"class": "BufBleed",
+"language": "GDScript",
+"path": "res://script/buf/buf_bleed.gd"
+}, {
+"base": "Object",
 "class": "Cell",
 "language": "GDScript",
 "path": "res://script/map_cell.gd"
@@ -33,6 +43,11 @@ _global_script_classes=[ {
 "class": "Idle",
 "language": "GDScript",
 "path": "res://script/ai/idle.gd"
+}, {
+"base": "Node2D",
+"class": "Map",
+"language": "GDScript",
+"path": "res://script/map.gd"
 }, {
 "base": "Unit",
 "class": "Mob",
@@ -91,10 +106,13 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Attack": "",
+"Buf": "",
+"BufBleed": "",
 "Cell": "",
 "Follow": "",
 "FollowAttack": "",
 "Idle": "",
+"Map": "",
 "Mob": "",
 "Move": "",
 "PathFind": "",

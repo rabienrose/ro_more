@@ -4,11 +4,11 @@ class_name Routine
 
 enum {RUNNING, FAIL, SUCC}
 
-var status=SUCC
+var state=SUCC
 var unit
 
 func reset():
-    status=SUCC
+    state=SUCC
 
 func on_create(_unit):
     unit=_unit
@@ -16,8 +16,9 @@ func on_create(_unit):
 func act():
     pass
 
-func _ready():
-    pass # Replace with function body.
+func stop_routine():
+    state=FAIL
 
-func _process(delta):
-    pass
+func reset_run():
+    reset()
+    state=RUNNING

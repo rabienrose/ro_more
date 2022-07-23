@@ -12,21 +12,27 @@ func reset():
         r.reset()
 
 func act():
-    if status!=RUNNING:
+    if state!=RUNNING:
         return
     while true:
         if cur_routine==-1:
             cur_routine=0
-            routines[cur_routine].status=RUNNING
+            routines[cur_routine].state=RUNNING
         routines[cur_routine].act()
-        if routines[cur_routine].status==SUCC:
+        if routines[cur_routine].state==SUCC:
             cur_routine=cur_routine+1
             if cur_routine>=routines.size():
-                status=SUCC
+                state=SUCC
                 break
-            routines[cur_routine].status=RUNNING
-        elif routines[cur_routine].status==FAIL:
-            status=FAIL
+            routines[cur_routine].state=RUNNING
+        elif routines[cur_routine].state==FAIL:
+            state=FAIL
             break
         else:
             break
+
+func _notification(what):
+    if what == NOTIFICATION_PREDELETE:
+        for r in routines:
+            r.free()
+        routines=[]

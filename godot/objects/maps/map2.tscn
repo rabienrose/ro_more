@@ -18,3 +18,5 @@ current = true
 script = ExtResource( 3 )
 
 [node name="Units" type="Node2D" parent="."]
+
+[node name="Players" type="Node2D" parent="."]

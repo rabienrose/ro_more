@@ -12,34 +12,44 @@ func reset():
     .reset()
     mov_routine.reset()
 
+
+
 func act():
-    if status!=RUNNING:
+    if state!=RUNNING:
         return
-    if mov_routine.status==SUCC:
-        if (target.cur_pos-unit.cur_pos).length()<1.0:
-            status=SUCC
+    if !is_instance_valid(target) or target.b_dead==true:
+        state=FAIL
+        return
+    if mov_routine.state==SUCC:
+        if Global.check_near_enough(target.cur_pos, unit.cur_pos,1):
+            state=SUCC
             return
         else:
             var path = unit.map.cal_path(unit.cur_pos,target.cur_pos)
             if path.size()==0:
-                status=FAIL
+                state=FAIL
                 return
             elif path.size()==1:
-                status=SUCC
+                state=SUCC
                 return
             else:
                 mov_routine.set_tar_pos(path[1])
-                mov_routine.status=RUNNING
-    elif mov_routine.status==RUNNING:
+                mov_routine.state=RUNNING
+    elif mov_routine.state==RUNNING:
         mov_routine.act()
     else:
-        status=FAIL
+        state=FAIL
         
 
 func on_create(_unit):
     .on_create(_unit)
     mov_routine=Move.new()
     mov_routine.on_create(_unit)
-        
+
+func _notification(what):
+    if what == NOTIFICATION_PREDELETE:
+        mov_routine.free()
+        mov_routine=null
+    
     
     

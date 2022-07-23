@@ -7,15 +7,15 @@ var idle_routine
 var sequence_routine
 
 func act():
-    if status!=RUNNING:
+    if state!=RUNNING:
         return
-    if sequence_routine.status==SUCC:
+    if sequence_routine.state==SUCC:
         var temp_pos=unit.map.get_rand_free_cell().pos
         walk_to_routine.set_tar_pos(temp_pos)
         idle_routine.reset()
         idle_routine.set_duration(Global.rng.randi_range(0,1000))
         sequence_routine.reset()
-        sequence_routine.status=RUNNING
+        sequence_routine.state=RUNNING
     sequence_routine.act()
     
 func on_create(_unit):
@@ -27,3 +27,8 @@ func on_create(_unit):
     sequence_routine=Sequence.new()
     sequence_routine.on_create(_unit)
     sequence_routine.routines=[idle_routine, walk_to_routine]
+
+func _notification(what):
+    if what == NOTIFICATION_PREDELETE:
+        print("ai free")
+        sequence_routine.free()

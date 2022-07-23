@@ -16,19 +16,21 @@ func set_tar(_tar):
     target=_tar
 
 func act():
-    if status!=RUNNING:
+    if state!=RUNNING:
         return
-    if (target.cur_pos-unit.cur_pos).length()>unit.atk_range/2.0:
-        status=FAIL
+    if !is_instance_valid(target) or target.b_dead==true:
+        state=FAIL
         return
-    if OS.get_ticks_msec()-s_time<unit.atk_spd*1000*pre_time:
-        return
+    if not Global.check_near_enough(target.cur_pos, unit.cur_pos, unit.atk_range):
+        state=FAIL
     else:
-        if attcked==false:
-            unit.attack(target)
-            attcked=true
-        if OS.get_ticks_msec()-s_time>unit.atk_spd*1000:
-            status=SUCC
-            return
+        if OS.get_ticks_msec()-s_time<unit.atk_spd*1000*pre_time:
+            pass
+        else:
+            if attcked==false:
+                unit.attack(target)
+                attcked=true
+            if OS.get_ticks_msec()-s_time>unit.atk_spd*1000:
+                state=SUCC
     
     

@@ -9,16 +9,20 @@ func reset():
     routine.reset()
 
 func act():
-    if status!=RUNNING:
+    if state!=RUNNING:
         return
-    if routine.status==SUCC:
+    if routine.state==SUCC:
         routine.reset()
-        routine.status=RUNNING
-    elif routine.status==FAIL:
-        status=FAIL
+        routine.state=RUNNING
+    elif routine.state==FAIL:
+        state=FAIL
     else:
         routine.act()
 
+func _notification(what):
+    if what == NOTIFICATION_PREDELETE:
+        routine.free()
+        routine=null
         
     
     
