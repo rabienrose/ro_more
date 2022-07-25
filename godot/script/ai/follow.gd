@@ -12,8 +12,6 @@ func reset():
     .reset()
     mov_routine.reset()
 
-
-
 func act():
     if state!=RUNNING:
         return
@@ -25,7 +23,7 @@ func act():
             state=SUCC
             return
         else:
-            var path = unit.map.cal_path(unit.cur_pos,target.cur_pos)
+            var path = unit.map.cal_path(unit.cur_pos,target.cur_pos, 20)
             if path.size()==0:
                 state=FAIL
                 return

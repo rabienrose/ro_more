@@ -14,7 +14,7 @@ static func cal_atk(src_unit):
 static func cal_max_hp(src_unit):
     var job_info = Config.job_info[src_unit.job]
     var max_hp=job_info["init_hp"]
-    if src_unit.lv>1:
+    if src_unit.blv>1:
         for i in range(2,src_unit.lv):
             max_hp=max_hp+job_info["max_hp_inc_lv"]*i
     return max_hp
@@ -22,7 +22,7 @@ static func cal_max_hp(src_unit):
 static func cal_max_sp(src_unit):
     var job_info = Config.job_info[src_unit.job]
     var max_sp=job_info["init_sp"]
-    if src_unit.lv>1:
+    if src_unit.blv>1:
         for i in range(2,src_unit.lv):
             max_sp=max_sp+job_info["max_sp_inc_lv"]*i
     return max_sp

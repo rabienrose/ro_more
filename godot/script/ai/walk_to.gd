@@ -20,7 +20,7 @@ func reset():
 func set_tar_pos(_tar_pos):
     tar_pos=_tar_pos
     cur_path_ind=0
-    path = unit.map.cal_path(unit.cur_pos, _tar_pos)
+    path = unit.map.cal_path(unit.cur_pos, _tar_pos, 20)
     if path.size()==0:
         state=FAIL
     else:

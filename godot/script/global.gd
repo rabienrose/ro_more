@@ -5,6 +5,7 @@ var mob_res_path="res://objects/mobs/"
 var buf_script_path="res://script/buf/"
 var player_path="res://objects/player.tscn"
 var map_path="res://objects/maps/"
+var ai_root="res://script/ai/"
 
 var pixel_p_cell=32
 
@@ -44,6 +45,17 @@ func dir_2_vec(d_ind):
         return Vector2(-1,0)
     elif d_ind==7:
         return Vector2(-1,-1)
+
+func get_ai_obj(ai_name, owner):
+    var ai_path = ai_root+ai_name+".gd"
+    var res=load(ai_path)
+    if res!=null:
+        var new_obj=res.new()
+        new_obj.on_create(owner)
+        return new_obj
+    else:
+        print("ai script not exist!!")
+        return null
 
 func get_buf_obj(buf_name):
     var script_path = buf_script_path+"buf_"+buf_name+".gd"

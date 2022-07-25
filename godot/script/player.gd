@@ -2,6 +2,21 @@ extends Unit
 
 var sprite_name="player"
 
+enum {
+        EQI_ACC_L ,
+        EQI_ACC_R,
+        EQI_SHOES,
+        EQI_GARMENT,
+        EQI_HEAD_LOW,
+        EQI_HEAD_MID,
+        EQI_HEAD_TOP,
+        EQI_ARMOR,
+        EQI_HAND_L,
+        EQI_HAND_R,
+        EQI_AMMO,
+        EQI_MAX
+    }
+
 var routine_dict={}
 
 var cur_routine=""
@@ -9,6 +24,18 @@ var cur_routine=""
 var cam
 
 var inventory={}
+
+var str_
+var agi_
+var vit_
+var int_
+var dex_
+var luk_
+var joblv
+var job
+var jobexp
+var baseexp
+var skills=[]
 
 func update_cam_pos(delta_p):
     cam.set_delay(-delta_p)
@@ -31,7 +58,7 @@ func init_with_info(info):
     vit_=info["vit"]
     int_=info["int"]
     dex_=info["dex"]
-    bexp=info["exp"]
+    baseexp=info["exp"]
     blv=info["lv"]
     jobexp=info["jobexp"]
     joblv=info["joblv"]

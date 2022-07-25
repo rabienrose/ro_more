@@ -1,0 +1,31 @@
+{
+    "fire_bolt": {
+        "sp":10,
+        "atk":20,
+        "count":3,
+        "spell_time":2,
+        "delay":1,
+        "class":"single_atk"
+    },
+    "fire_blast": {
+        "sp":10,
+        "atk":20,
+        "count":3,
+        "spell_time":2,
+        "delay":1,
+        "class":"area_atk"
+    },
+    "heal": {
+        "sp":10,
+        "amount":20,
+        "spell_time":1,
+        "delay":0.5,
+        "class":"heal"
+    },
+    "sword_master": {
+        "attr":"atk",
+        "weapon":"sword",
+        "amount":20,
+        "class":"atk_modifier"
+    }
+}

@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "Equip",
 "language": "GDScript",
-"path": "res://script/equips/equip.gd"
+"path": "res://script/equip.gd"
 }, {
 "base": "Routine",
 "class": "Follow",

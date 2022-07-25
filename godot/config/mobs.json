@@ -1,0 +1,35 @@
+{
+    "mob1": {
+        "mov_spd":64,
+        "atk":5,
+        "hp":20,
+        "sp":5,
+        "atk_range":1,
+        "atk_spd":1,
+        "hit":80,
+        "flee":10,
+        "cri":10,
+        "matk_min":10,
+        "matk_max":30,
+        "def":10,
+        "mdef":3,
+        "lv":1,
+        "baseexp":20,
+        "jobexp":20,
+        "ai":{
+            "class":"passive"
+        },
+        "skills":[
+            {
+                "chance":10,
+                "skill":"fire_bolt"
+            }
+        ],
+        "items":[
+            {
+                "chance":50,
+                "item":"apple"
+            }
+        ]
+    }
+}

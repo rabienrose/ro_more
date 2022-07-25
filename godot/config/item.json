@@ -1,0 +1,24 @@
+{
+    "apple": {
+        "sell":10,
+        "buy":20,
+        "weight":2,
+        "heal_amount":10,
+        "class":"heal"
+    },
+    "dagger": {
+        "sell":100,
+        "buy":200,
+        "weight":20,
+        "atk":100,
+        "equip_pos":"r_lnd",
+        "effect":[
+            {
+                "attr":"str",
+                "val":3,
+                "class":"attr_modifier"
+            }
+        ],
+        "class":"equip"
+    }
+}

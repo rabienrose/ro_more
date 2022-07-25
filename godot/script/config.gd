@@ -1,6 +1,8 @@
 extends Node
 
 var job_info={}
+var map_info={}
+var mob_info={}
 
 func read_a_json(file_name):
     var f= File.new()
@@ -12,5 +14,6 @@ func read_a_json(file_name):
 
 func _ready():
     job_info = read_a_json("res://config/job_info.json")
-    print(job_info)
+    map_info = read_a_json("res://config/maps.json")
+    mob_info = read_a_json("res://config/mobs.json")
 

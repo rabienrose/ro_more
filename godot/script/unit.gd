@@ -2,23 +2,10 @@ extends Node2D
 
 class_name Unit
 
+signal on_hitted(other)
+
 export (NodePath) var hp_bar_path
 export (NodePath) var sp_bar_path
-
-enum {
-        EQI_ACC_L ,
-        EQI_ACC_R,
-        EQI_SHOES,
-        EQI_GARMENT,
-        EQI_HEAD_LOW,
-        EQI_HEAD_MID,
-        EQI_HEAD_TOP,
-        EQI_ARMOR,
-        EQI_HAND_L,
-        EQI_HAND_R,
-        EQI_AMMO,
-        EQI_MAX
-    }
 
 var map
 var frame_delta
@@ -33,17 +20,11 @@ var u_type
 var mov_spd=64
 var atk=5
 var hp=20
+var sp
 var atk_range=1
 var atk_spd=1
-var sp
 var max_hp
 var max_sp
-var str_
-var agi_
-var vit_
-var int_
-var dex_
-var luk_
 var hit
 var flee
 var cri
@@ -53,48 +34,29 @@ var speed
 var aspd_rate
 var def
 var mdef
-var bexp
-var jobexp
 var blv
-var joblv
-var job
-
-var equips=[]
-
-var skills={}
 var bufs={}
 
-
-func get_str():
-    return str_
-
-func get_dex():
-    return dex_
-
-func proc_skill_flee(ori_flee):
-    for skill in skills:
-        ori_flee=skill.proc_skill_flee(ori_flee)
-    return ori_flee
-
-func proc_buf_flee(ori_flee):
-    for buf in bufs:
-        ori_flee=buf.proc_buf_flee(ori_flee)
-    return ori_flee
+func update_cam_pos(delta_p):
+    pass
 
 func attack(target):
-    var b_hit = StatusCal.check_hit(self,target,1)
-    if b_hit:
-        var damage = 0
-        if equips[EQI_HAND_R]==null or equips[EQI_HAND_R]!=null and equips[EQI_HAND_R].atk_type==Equip.MELEE:
-            damage=StatusCal.cal_melee_damage(self,target)
-        elif equips[EQI_HAND_R]!=null and equips[EQI_HAND_R].atk_type==Equip.RANGE:
-            damage=StatusCal.cal_range_damage(self,target)
-        print("damage: ",damage)
-        var die = target.damage(damage)
-        if die:
-            on_target_die(target)
-    else:
-        print("miss")
+    target.damage(3)
+    
+    target.emit_signal("on_hitted",self)
+    # var b_hit = StatusCal.check_hit(self,target,1)
+    # if b_hit:
+    #     var damage = 0
+    #     if equips[EQI_HAND_R]==null or equips[EQI_HAND_R]!=null and equips[EQI_HAND_R].atk_type==Equip.MELEE:
+    #         damage=StatusCal.cal_melee_damage(self,target)
+    #     elif equips[EQI_HAND_R]!=null and equips[EQI_HAND_R].atk_type==Equip.RANGE:
+    #         damage=StatusCal.cal_range_damage(self,target)
+    #     print("damage: ",damage)
+    #     var die = target.damage(damage)
+    #     if die:
+    #         on_target_die(target)
+    # else:
+    #     print("miss")
 
 func _notification(what):
     if what == NOTIFICATION_PREDELETE:

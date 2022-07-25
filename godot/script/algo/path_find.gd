@@ -16,7 +16,7 @@ static func get_min_score_node(node_list):
             min_node=key
     return node_list[min_node]
 
-static func find_path(map, s_pos, e_pos):
+static func find_path(map, s_pos, e_pos, max_dist):
     var done_nodes={}
     var pending_nodes={}
     var t_id= map.pos_2_cind(s_pos)
@@ -39,6 +39,8 @@ static func find_path(map, s_pos, e_pos):
         if (cur_node["pos"]-e_pos).length()<0.1:
             var path_inv=[]
             var temp_cur_node=cur_node
+            if cur_node["cost"]>max_dist:
+                return []
             path_inv.append(cur_node["cid"])
             while true:
                 if temp_cur_node.parent_node!=null:

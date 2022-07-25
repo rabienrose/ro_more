@@ -2,11 +2,7 @@ extends Node2D
 
 class_name Map
 
-export (NodePath) var ground_path
-
-var map_name="map3"
-var mob_count=1
-var mob_name="mob_wander"
+export var map_name=""
 var map_w
 var map_h
 var block_w
@@ -119,9 +115,11 @@ func get_rand_free_cell_in_area(pos, range_cell):
     var free_cell_temp=[]
     for x in range(pos.x-range_cell, pos.x+range_cell+1):
         for y in range(pos.y-range_cell, pos.y+range_cell+1):
-            var cell=cells[pos_2_cind(Vector2(x,y))]
-            if cell.b_free==true:
-                free_cell_temp.append(cell)
+            var temp_p=Vector2(x,y)
+            if check_pos_in_map(temp_p):
+                var cell=cells[pos_2_cind(temp_p)]
+                if cell.b_free==true:
+                    free_cell_temp.append(cell)
     var r_ind = Global.rng.randi_range(0,free_cell_temp.size()-1)
     return free_cell_temp[r_ind]
 
@@ -131,8 +129,8 @@ func pos_2_pixel(pos):
 func pixel_2_pos(p_pos):
     return Vector2(floor(p_pos.x/Global.pixel_p_cell), floor(p_pos.y/Global.pixel_p_cell))
 
-func cal_path(s_pos, e_pos):
-    return PathFind.find_path(self, s_pos, e_pos)
+func cal_path(s_pos, e_pos, max_step):
+    return PathFind.find_path(self, s_pos, e_pos, max_step)
 
 func check_pos_in_map(pos):
     if pos.x<0 or pos.y<0 or pos.x>=map_w or pos.y>=map_h:
@@ -188,23 +186,18 @@ func _ready():
                 new_cell.b_free=false
             cells[pos_2_cind(Vector2(x,y))]=new_cell
     image.unlock()
-    # var mob_res = load(Global.mob_res_path+"mob_attack.tscn")
-    # var mob_follow = mob_res.instance()
-    # mob_follow.on_create(self)
-    # var cell = get_rand_free_cell()
-    # mob_follow.set_cell_pos(cell.pos)
-    # mob_follow.name="attack"
-    # units_root.add_child(mob_follow)
-    for _i in range(3):
-        var mob_res = load(Global.mob_res_path+"mob_wander.tscn")
-        var mob_wander = mob_res.instance()
-        mob_wander.on_create(self)
-        var cell = get_rand_free_cell()
-        mob_wander.name="wander_"+str(_i)
-        units_root.add_child(mob_wander)
-        mob_wander.set_cell_pos(cell.pos)
-    # mob_wander.add_buf("bleed")
-    # mob_follow.set_tar(mob_wander)
+
+    var spawn_info=Config.map_info[map_name]["mobs"]
+    for mob in spawn_info:
+        for i in range(mob["count"]):
+            var mob_res = load(Global.mob_res_path+"mob.tscn")
+            var mob_obj = mob_res.instance()
+            mob_obj.on_create(self)
+            mob_obj.init_with_info(Config.mob_info[mob["name"]])
+            var cell = get_rand_free_cell()
+            mob_obj.name=mob["name"]+"_"+str(i)
+            units_root.add_child(mob_obj)
+            mob_obj.set_cell_pos(cell.pos)
 
     var save_timer=Timer.new()
     add_child(save_timer)
