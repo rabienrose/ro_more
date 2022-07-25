@@ -3,9 +3,8 @@ extends Node2D
 class_name Map
 
 export (NodePath) var ground_path
-export (NodePath) var cam_path
 
-var map_name="map2"
+var map_name="map3"
 var mob_count=1
 var mob_name="mob_wander"
 var map_w
@@ -16,9 +15,14 @@ var cells=[]
 var free_cells=[]
 var units_root
 var players_root
-var path_finder
 var blocks_unit=[]
 var BLOCK_SIZE=5
+var game
+
+
+func _notification(what):
+    if what == NOTIFICATION_PREDELETE:
+        pass
 
 func check_unit_cell(unit):
     var cid=pos_2_cind(unit.cur_pos)
@@ -111,6 +115,16 @@ func get_rand_free_cell():
     var r_ind = Global.rng.randi_range(0,free_cells.size()-1)
     return free_cells[r_ind]
 
+func get_rand_free_cell_in_area(pos, range_cell):
+    var free_cell_temp=[]
+    for x in range(pos.x-range_cell, pos.x+range_cell+1):
+        for y in range(pos.y-range_cell, pos.y+range_cell+1):
+            var cell=cells[pos_2_cind(Vector2(x,y))]
+            if cell.b_free==true:
+                free_cell_temp.append(cell)
+    var r_ind = Global.rng.randi_range(0,free_cell_temp.size()-1)
+    return free_cell_temp[r_ind]
+
 func pos_2_pixel(pos):
     return Vector2(Global.pixel_p_cell*pos.x+Global.pixel_p_cell/2, Global.pixel_p_cell*pos.y+Global.pixel_p_cell/2)
 
@@ -118,7 +132,7 @@ func pixel_2_pos(p_pos):
     return Vector2(floor(p_pos.x/Global.pixel_p_cell), floor(p_pos.y/Global.pixel_p_cell))
 
 func cal_path(s_pos, e_pos):
-    return path_finder.find_path(self, s_pos, e_pos)
+    return PathFind.find_path(self, s_pos, e_pos)
 
 func check_pos_in_map(pos):
     if pos.x<0 or pos.y<0 or pos.x>=map_w or pos.y>=map_h:
@@ -130,8 +144,20 @@ func get_mouse_cell_pos():
     var pixel_p = get_global_mouse_position()
     return pixel_2_pos(pixel_p)
 
+func char_join(char_name):
+    var char_info = game.get_char_info(char_name)
+    var player_res = load(Global.player_path)
+    var player = player_res.instance()
+    player.on_create(self)
+    player.name=char_info["name"]
+    players_root.add_child(player)
+    player.set_cell_pos(Vector2(char_info["pos_x"], char_info["pos_y"]))
+    player.init_with_info(char_info)
+
+func on_create(_game):
+    game=_game
+
 func _ready():
-    path_finder=PathFind.new()
     units_root=get_node("Units")
     players_root=get_node("Players")
     var f = File.new()
@@ -180,11 +206,17 @@ func _ready():
     # mob_wander.add_buf("bleed")
     # mob_follow.set_tar(mob_wander)
 
-    var player_res = load(Global.player_path)
-    var player = player_res.instance()
-    player.on_create(self)
-    var cell = get_rand_free_cell()
-    player.name="player"
-    players_root.add_child(player)
-    player.set_cell_pos(cell.pos)
+    var save_timer=Timer.new()
+    add_child(save_timer)
+    save_timer.name="save_timer"
+    save_timer.wait_time=5
+    save_timer.connect("timeout", self, "save_map")
+    save_timer.start()
+
+func save_map():
+    for player in players_root.get_children():
+        var info = player.get_save_info()
+        game.save_char_info(player.name, info)
+
+
 

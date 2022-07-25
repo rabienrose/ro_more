@@ -1,13 +1,13 @@
 extends Object
 class_name PathFind
 
-func node_cost(d_ind):
+static func node_cost(d_ind):
     if d_ind==1 or d_ind==3 or d_ind==5 or d_ind==7:
         return 1.4142
     else:
         return 1
 
-func get_min_score_node(node_list):
+static func get_min_score_node(node_list):
     var min_score=-1
     var min_node=-1
     for key in node_list:
@@ -16,7 +16,7 @@ func get_min_score_node(node_list):
             min_node=key
     return node_list[min_node]
 
-func find_path(map, s_pos, e_pos):
+static func find_path(map, s_pos, e_pos):
     var done_nodes={}
     var pending_nodes={}
     var t_id= map.pos_2_cind(s_pos)
@@ -77,6 +77,8 @@ func find_path(map, s_pos, e_pos):
                 new_node["pos"]=next_pos
                 new_node["score"]=new_node["dist"]+new_node["cost"]
                 pending_nodes[next_c_ind]=new_node
+        if pending_nodes.size()==0:
+            return []
         cur_node = get_min_score_node(pending_nodes)
         done_nodes[cur_node["cid"]]=cur_node
         pending_nodes.erase(cur_node["cid"])

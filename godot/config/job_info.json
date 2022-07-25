@@ -1,0 +1,20 @@
+{
+    "novice": {
+        "init_hp":50,
+        "init_sp":10,
+        "max_hp_inc_lv":0.7,
+        "max_sp_inc_lv":0.2
+    },
+    "swordman": {
+        "init_hp":100,
+        "init_sp":20,
+        "max_hp_inc_lv":1.0,
+        "max_sp_inc_lv":0.3
+    },
+    "mage": {
+        "init_hp":40,
+        "init_sp":40,
+        "max_hp_inc_lv":0.6,
+        "max_sp_inc_lv":0.6
+    }
+}

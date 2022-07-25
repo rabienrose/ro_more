@@ -6,7 +6,7 @@
 [node name="Unit" type="Node2D"]
 script = ExtResource( 1 )
 hp_bar_path = NodePath("VBoxContainer/HP")
-atk_bar_path = NodePath("VBoxContainer/ATK")
+sp_bar_path = NodePath("VBoxContainer/SP")
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -25,7 +25,7 @@ text = "hp:30"
 align = 1
 valign = 1
 
-[node name="ATK" type="Label" parent="VBoxContainer"]
+[node name="SP" type="Label" parent="VBoxContainer"]
 margin_top = 18.0
 margin_right = 80.0
 margin_bottom = 32.0

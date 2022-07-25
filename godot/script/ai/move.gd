@@ -20,4 +20,9 @@ func act():
         unit.set_cell_pos(f_pos)
         return
     r_vec=r_vec.normalized()
-    unit.position=unit.position+r_vec*next_mov_dist
+    var move_d= r_vec*next_mov_dist
+    # move_d=Vector2(stepify(move_d.x,0.01),stepify(move_d.y,0.01))
+    # print(move_d)
+    unit.update_cam_pos(move_d)
+    unit.position=unit.position+move_d
+    

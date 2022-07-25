@@ -4,6 +4,7 @@ var map_data_path="res://binary/images/map/"
 var mob_res_path="res://objects/mobs/"
 var buf_script_path="res://script/buf/"
 var player_path="res://objects/player.tscn"
+var map_path="res://objects/maps/"
 
 var pixel_p_cell=32
 

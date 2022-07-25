@@ -6,11 +6,41 @@ var routine_dict={}
 
 var cur_routine=""
 
+var cam
+
+var inventory={}
+
+func update_cam_pos(delta_p):
+    cam.set_delay(-delta_p)
+
 func _notification(what):
     if what == NOTIFICATION_PREDELETE:
         for routine_name in routine_dict:
             routine_dict[routine_name].free()
         routine_dict={}
+
+func get_save_info():
+    var info={}
+    info["pos_x"]=cur_pos.x
+    info["pos_y"]=cur_pos.y
+    return info
+
+func init_with_info(info):
+    str_=info["str"]
+    agi_=info["agi"]
+    vit_=info["vit"]
+    int_=info["int"]
+    dex_=info["dex"]
+    bexp=info["exp"]
+    blv=info["lv"]
+    jobexp=info["jobexp"]
+    joblv=info["joblv"]
+    hp=info["hp"]
+    sp=info["sp"]
+    job=info["job"]
+    max_hp= StatusCal.cal_max_hp(self)
+    max_sp= StatusCal.cal_max_sp(self)
+    update_board()
 
 func _input(event):
     if event is InputEventMouseButton:
@@ -38,7 +68,12 @@ func _process(_delta):
     if cur_routine!="" and routine_dict[cur_routine].state==Routine.RUNNING:
         routine_dict[cur_routine].act()
 
+func set_cell_pos(pos_c):
+    .set_cell_pos(pos_c)
+    # map.cam.set_pos_c(pos_c, true)
+
 func _ready():
+    cam=get_node("Camera2D")
     mov_spd=200
     atk=10
     update_board()
