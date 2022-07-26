@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/attribute_ui.gd" type="Script" id=1]
+[ext_resource path="res://ui/attr_ui_item.tscn" type="PackedScene" id=2]
+
+[node name="Attribute" type="Control"]
+margin_right = 300.0
+margin_bottom = 300.0
+script = ExtResource( 1 )
+item_res = ExtResource( 2 )
+list_path = NodePath("VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0

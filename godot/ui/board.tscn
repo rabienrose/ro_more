@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/board.gd" type="Script" id=1]
+
+[node name="Board" type="VBoxContainer"]
+margin_left = -36.0
+margin_top = -52.0
+margin_right = 44.0
+margin_bottom = -20.0
+script = ExtResource( 1 )
+hp_bar_path = NodePath("HP")
+sp_bar_path = NodePath("SP")
+name_label_path = NodePath("Name")
+
+[node name="Name" type="Label" parent="."]
+margin_right = 80.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0.901961, 0.188235, 0.188235, 1 )
+text = "xxxxx"
+align = 1
+valign = 1
+
+[node name="HP" type="Label" parent="."]
+margin_top = 18.0
+margin_right = 80.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 0.901961, 0.188235, 0.188235, 1 )
+text = "hp:30"
+align = 1
+valign = 1
+
+[node name="SP" type="Label" parent="."]
+margin_top = 36.0
+margin_right = 80.0
+margin_bottom = 50.0
+custom_colors/font_color = Color( 0.823529, 0.133333, 0.133333, 1 )
+text = "atk:5"
+align = 1
+valign = 1

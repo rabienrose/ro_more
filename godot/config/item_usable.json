@@ -1,0 +1,9 @@
+{
+    "apple": {
+        "sell":10,
+        "buy":20,
+        "weight":2,
+        "heal_amount":10,
+        "class":"heal"
+    }
+}

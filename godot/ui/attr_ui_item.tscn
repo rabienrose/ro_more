@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://theme/simple.tres" type="Theme" id=1]
+[ext_resource path="res://ui/attr_ui_item.gd" type="Script" id=2]
+
+[node name="AttrItem" type="HBoxContainer"]
+margin_right = 300.0
+margin_bottom = 50.0
+script = ExtResource( 2 )
+label_path = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+margin_right = 246.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource( 1 )
+align = 1
+valign = 1
+
+[node name="Add" type="Button" parent="."]
+margin_left = 250.0
+margin_right = 300.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 0 )
+
+[node name="Label" type="Label" parent="Add"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "+"
+align = 1
+valign = 1
+
+[connection signal="button_up" from="Add" to="." method="_on_Add_button_up"]

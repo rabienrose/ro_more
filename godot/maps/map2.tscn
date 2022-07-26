@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://binary/images/map/map2.png" type="Texture" id=1]
+[ext_resource path="res://script/map.gd" type="Script" id=2]
+
+[node name="Map" type="Node2D"]
+script = ExtResource( 2 )
+map_name = "map2"
+
+[node name="Ground" type="Sprite" parent="."]
+scale = Vector2( 32, 32 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Mobs" type="Node2D" parent="."]
+
+[node name="Players" type="Node2D" parent="."]

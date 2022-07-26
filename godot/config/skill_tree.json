@@ -1,0 +1,34 @@
+{
+    "swordman":{
+        "inherit":"novice",
+        "tree":{
+            "sm_sword":{
+                "max_lv":10
+            },
+            "sm_two-handed":{
+                "max_lv":10,
+                "reqires":{
+                    "sword":1
+                }
+            },
+            "sm_hp_recovery":{
+                "max_lv":10
+            },
+            "sm_bash":{
+                "max_lv":10
+            },
+            "sm_provoke":{
+                "max_lv":10
+            },
+            "sm_endure":{
+                "max_lv":10,
+                "reqires":{
+                    "sm_provoke":5
+                }
+            },
+            "sm_moving_recovery":{
+                "max_lv":1
+            }
+        }
+    }
+}

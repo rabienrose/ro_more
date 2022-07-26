@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://theme/simple.tres" type="Theme" id=1]
+[ext_resource path="res://ui/detail.gd" type="Script" id=2]
+
+[node name="Detail" type="VBoxContainer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -200.0
+margin_top = 20.0
+margin_bottom = 500.0
+script = ExtResource( 2 )
+attr1_path = NodePath("Attr1")
+attr2_path = NodePath("Attr2")
+attr3_path = NodePath("Attr3")
+attr4_path = NodePath("Attr4")
+attr5_path = NodePath("Attr5")
+attr6_path = NodePath("Attr6")
+attr7_path = NodePath("Attr7")
+attr8_path = NodePath("Attr8")
+
+[node name="Attr1" type="Label" parent="."]
+margin_right = 200.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+theme = ExtResource( 1 )
+align = 2
+valign = 1
+
+[node name="Attr2" type="Label" parent="."]
+margin_top = 29.0
+margin_right = 200.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 0, 25 )
+theme = ExtResource( 1 )
+align = 2
+valign = 1
+
+[node name="Attr3" type="Label" parent="."]
+margin_top = 58.0
+margin_right = 200.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 0, 25 )
+theme = ExtResource( 1 )
+align = 2
+valign = 1
+
+[node name="Attr4" type="Label" parent="."]
+margin_top = 87.0
+margin_right = 200.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 0, 25 )
+theme = ExtResource( 1 )
+align = 2
+valign = 1
+
+[node name="Attr5" type="Label" parent="."]
+margin_top = 116.0
+margin_right = 200.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 0, 25 )
+theme = ExtResource( 1 )
+align = 2
+valign = 1
+
+[node name="Attr6" type="Label" parent="."]
+margin_top = 145.0
+margin_right = 200.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 0, 25 )
+theme = ExtResource( 1 )
+align = 2
+valign = 1
+
+[node name="Attr7" type="Label" parent="."]
+margin_top = 174.0
+margin_right = 200.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 0, 25 )
+theme = ExtResource( 1 )
+align = 2
+valign = 1
+
+[node name="Attr8" type="Label" parent="."]
+margin_top = 203.0
+margin_right = 200.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 0, 25 )
+theme = ExtResource( 1 )
+align = 2
+valign = 1
