@@ -12,7 +12,7 @@ func act():
         if follow_attck_routine.state==RUNNING:
             follow_attck_routine.act()
         else:
-            mode="wonder"
+            mode="wander"
             wander_routine.reset_run()
             enemy=null
     elif mode=="wander":
@@ -35,6 +35,11 @@ func on_create(_unit):
     follow_attck_routine=Global.get_ai_obj("follow_attack", unit)
     wander_routine=Global.get_ai_obj("wander", unit)
     wander_routine.reset_run()
+
+func stop_routine():
+    .stop_routine()
+    follow_attck_routine.stop_routine()
+    wander_routine.stop_routine()
 
 func _notification(what):
     if what == NOTIFICATION_PREDELETE:

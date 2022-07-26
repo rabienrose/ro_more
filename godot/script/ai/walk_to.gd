@@ -8,6 +8,10 @@ var cur_path_ind=0
 
 var mov_routine
 
+func stop_routine():
+    .stop_routine()
+    mov_routine.stop_routine()
+
 func _notification(what):
     if what == NOTIFICATION_PREDELETE:
         mov_routine.free()

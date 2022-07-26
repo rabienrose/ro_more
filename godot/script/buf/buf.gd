@@ -9,6 +9,7 @@ var s_time=0
 var duration=5
 var state=PEND
 var buf_name=""
+var buf_group="none"
 
 func on_create(_owner):
     owner=_owner

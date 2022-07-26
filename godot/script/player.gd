@@ -18,12 +18,10 @@ enum {
     }
 
 var routine_dict={}
-
 var cur_routine=""
-
 var cam
-
 var inventory={}
+var equipments=[]
 
 var str_
 var agi_
@@ -36,6 +34,9 @@ var job
 var jobexp
 var baseexp
 var skills=[]
+var attr_point=0
+
+var b_master=false
 
 func update_cam_pos(delta_p):
     cam.set_delay(-delta_p)
@@ -50,14 +51,37 @@ func get_save_info():
     var info={}
     info["pos_x"]=cur_pos.x
     info["pos_y"]=cur_pos.y
+    info["hp"]=hp
+    info["sp"]=sp
+    info["str"]=str_
+    info["agi"]=agi_
+    info["vit"]=vit_
+    info["int"]=int_
+    info["dex"]=dex_
+    info["luk"]=luk_
+    info["exp"]=baseexp
+    info["lv"]=blv
+    info["jobexp"]=jobexp
+    info["joblv"]=joblv
+    info["job"]=job
     return info
 
-func init_with_info(info):
+func sync_ui():
+    UiMsg.emit_signal("on_attribute_change","str", str_)
+    UiMsg.emit_signal("on_attribute_change","agi", agi_)
+    UiMsg.emit_signal("on_attribute_change","vit", vit_)
+    UiMsg.emit_signal("on_attribute_change","int", int_)
+    UiMsg.emit_signal("on_attribute_change","dex", dex_)
+    UiMsg.emit_signal("on_attribute_change","luk", luk_)
+
+func on_create(_map, info):
+    .on_create(_map, info)
     str_=info["str"]
     agi_=info["agi"]
     vit_=info["vit"]
     int_=info["int"]
     dex_=info["dex"]
+    luk_=info["luk"]
     baseexp=info["exp"]
     blv=info["lv"]
     jobexp=info["jobexp"]
@@ -65,13 +89,22 @@ func init_with_info(info):
     hp=info["hp"]
     sp=info["sp"]
     job=info["job"]
+    name=info["name"]
     max_hp= StatusCal.cal_max_hp(self)
     max_sp= StatusCal.cal_max_sp(self)
+    atk = StatusCal.cal_atk(self)
+    var body_res = load(Global.body_res_path+info["body_v"]+".tscn")
+    var body_obj = body_res.instance()
+    add_child(body_obj)
     update_board()
+    if b_master:
+        sync_ui()
 
 func _input(event):
+    if b_master==false:
+        return
     if event is InputEventMouseButton:
-        if event.pressed==false:
+        if event.button_index == BUTTON_LEFT and event.pressed==false:
             var mouse_pos=map.get_mouse_cell_pos()
             var click_cid=map.pos_2_cind(mouse_pos)
             if map.cells[click_cid].b_free==false:
@@ -95,15 +128,27 @@ func _process(_delta):
     if cur_routine!="" and routine_dict[cur_routine].state==Routine.RUNNING:
         routine_dict[cur_routine].act()
 
-func set_cell_pos(pos_c):
-    .set_cell_pos(pos_c)
-    # map.cam.set_pos_c(pos_c, true)
+func on_die():
+    routine_dict[cur_routine].stop_routine()
+    var cell = map.get_rand_free_cell()
+    set_cell_pos(cell.pos)
+    hp=int(max_hp/2)
+    sp=0
+    b_dead=false
+    update_board()
+
+func on_target_die(target):
+    baseexp=baseexp+target.baseexp
 
 func _ready():
+    equipments.resize(EQI_MAX)
+    for i in range(EQI_MAX):
+        equipments[i]=null
     cam=get_node("Camera2D")
-    mov_spd=200
-    atk=10
-    update_board()
+    if b_master:
+        cam.current=true
+    else:
+        remove_child(cam)
     u_type=Global.PLAYER
     routine_dict["walk_to"]=WalkTo.new()
     routine_dict["walk_to"].on_create(self)

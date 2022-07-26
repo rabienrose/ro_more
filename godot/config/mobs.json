@@ -1,7 +1,8 @@
 {
-    "mob1": {
+    "poring": {
+        "name":"poring",
         "mov_spd":64,
-        "atk":5,
+        "atk":21,
         "hp":20,
         "sp":5,
         "atk_range":1,
@@ -11,7 +12,8 @@
         "cri":10,
         "matk_min":10,
         "matk_max":30,
-        "def":10,
+        "def_mul":10,
+        "def_add":2,
         "mdef":3,
         "lv":1,
         "baseexp":20,
@@ -19,17 +21,14 @@
         "ai":{
             "class":"passive"
         },
-        "skills":[
-            {
-                "chance":10,
-                "skill":"fire_bolt"
-            }
-        ],
         "items":[
             {
                 "chance":50,
                 "item":"apple"
             }
-        ]
+        ],
+        "visual":{
+            "body":"poring"
+        }
     }
 }

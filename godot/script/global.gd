@@ -1,11 +1,13 @@
 extends Node
 
 var map_data_path="res://binary/images/map/"
-var mob_res_path="res://objects/mobs/"
 var buf_script_path="res://script/buf/"
-var player_path="res://objects/player.tscn"
-var map_path="res://objects/maps/"
+var map_path="res://maps/"
 var ai_root="res://script/ai/"
+var config_root="res://config/"
+var body_res_path="res://units/mobs/"
+var player_path="res://units/player.tscn"
+var mob_path="res://units/mob.tscn"
 
 var pixel_p_cell=32
 
@@ -65,3 +67,14 @@ func get_buf_obj(buf_name):
     else:
         print("buf script not exist!!")
         return null
+
+func delete_children(node):
+    for n in node.get_children():
+        node.remove_child(n)
+        n.queue_free()
+
+func get_val_by_lv(vals,lv):
+    if typeof( vals )<=4:
+        return vals
+    else:
+        return vals[lv]

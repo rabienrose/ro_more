@@ -22,14 +22,19 @@ _global_script_classes=[ {
 "base": "Buf",
 "class": "BufBleed",
 "language": "GDScript",
-"path": "res://script/buf/buf_bleed.gd"
+"path": "res://script/buf/bu_bleed.gd"
 }, {
 "base": "Object",
 "class": "Cell",
 "language": "GDScript",
 "path": "res://script/map_cell.gd"
 }, {
-"base": "Object",
+"base": "Node",
+"class": "ConfigTools",
+"language": "GDScript",
+"path": "res://script/tools/config_tools.gd"
+}, {
+"base": "Item",
 "class": "Equip",
 "language": "GDScript",
 "path": "res://script/equip.gd"
@@ -48,6 +53,11 @@ _global_script_classes=[ {
 "class": "Idle",
 "language": "GDScript",
 "path": "res://script/ai/idle.gd"
+}, {
+"base": "Object",
+"class": "Item",
+"language": "GDScript",
+"path": "res://script/items/item.gd"
 }, {
 "base": "Node2D",
 "class": "Map",
@@ -95,6 +105,11 @@ _global_script_classes=[ {
 "path": "res://script/ai/sequence.gd"
 }, {
 "base": "Object",
+"class": "Skill",
+"language": "GDScript",
+"path": "res://script/skills/skill.gd"
+}, {
+"base": "Object",
 "class": "StatusCal",
 "language": "GDScript",
 "path": "res://script/algo/status_cal.gd"
@@ -119,10 +134,12 @@ _global_script_class_icons={
 "Buf": "",
 "BufBleed": "",
 "Cell": "",
+"ConfigTools": "",
 "Equip": "",
 "Follow": "",
 "FollowAttack": "",
 "Idle": "",
+"Item": "",
 "Map": "",
 "Mob": "",
 "Move": "",
@@ -132,6 +149,7 @@ _global_script_class_icons={
 "Routine": "",
 "Selector": "",
 "Sequence": "",
+"Skill": "",
 "StatusCal": "",
 "Unit": "",
 "WalkTo": "",
@@ -148,6 +166,7 @@ config/icon="res://icon.png"
 
 Global="*res://script/global.gd"
 Config="*res://script/config.gd"
+UiMsg="*res://script/ui_msg_center.gd"
 
 [display]
 

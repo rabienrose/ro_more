@@ -28,6 +28,10 @@ func on_create(_unit):
     sequence_routine.on_create(_unit)
     sequence_routine.routines=[idle_routine, walk_to_routine]
 
+func stop_routine():
+    .stop_routine()
+    sequence_routine.stop_routine()
+
 func _notification(what):
     if what == NOTIFICATION_PREDELETE:
         sequence_routine.free()

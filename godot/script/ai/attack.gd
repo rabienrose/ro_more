@@ -28,7 +28,7 @@ func act():
             pass
         else:
             if attcked==false:
-                unit.attack(target)
+                unit.do_melee_attack(target)
                 attcked=true
             if OS.get_ticks_msec()-s_time>unit.atk_spd*1000:
                 state=SUCC

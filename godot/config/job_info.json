@@ -6,15 +6,53 @@
         "max_sp_inc_lv":0.2
     },
     "swordman": {
-        "init_hp":100,
-        "init_sp":20,
+        "init_hp":120,
+        "init_sp":10,
         "max_hp_inc_lv":1.0,
-        "max_sp_inc_lv":0.3
+        "max_sp_inc_lv":0.3,
+        "attr_bonus":{
+            "str":[2,5,8,12],
+            "vit":[2,3,5,9,12,15]
+        }
     },
     "mage": {
-        "init_hp":40,
-        "init_sp":40,
+        "init_hp":50,
+        "init_sp":50,
         "max_hp_inc_lv":0.6,
-        "max_sp_inc_lv":0.6
+        "max_sp_inc_lv":0.7,
+        "attr_bonus":{
+            "dex":[2,5,8,12],
+            "int":[2,3,5,9,12,15]
+        }
+    },
+    "archer": {
+        "init_hp":80,
+        "init_sp":20,
+        "max_hp_inc_lv":0.8,
+        "max_sp_inc_lv":0.4,
+        "attr_bonus":{
+            "agi":[2,5,8,12],
+            "dex":[2,3,5,9,12,15]
+        }
+    },
+    "thief": {
+        "init_hp":90,
+        "init_sp":20,
+        "max_hp_inc_lv":0.8,
+        "max_sp_inc_lv":0.4,
+        "attr_bonus":{
+            "str":[2,5,8,12],
+            "agi":[2,3,5,9,12,15]
+        }
+    },
+    "acolyte": {
+        "init_hp":70,
+        "init_sp":30,
+        "max_hp_inc_lv":0.7,
+        "max_sp_inc_lv":0.6,
+        "attr_bonus":{
+            "vit":[2,5,8,12],
+            "int":[2,3,5,9,12,15]
+        }
     }
 }

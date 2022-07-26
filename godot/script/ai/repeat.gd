@@ -19,6 +19,10 @@ func act():
     else:
         routine.act()
 
+func stop_routine():
+    .stop_routine()
+    routine.stop_routine()
+
 func _notification(what):
     if what == NOTIFICATION_PREDELETE:
         routine.free()

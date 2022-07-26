@@ -2,8 +2,8 @@
     "map2": {
         "mobs":[
             {
-                "name":"mob1",
-                "count":1
+                "name":"poring",
+                "count":3
             }
         ]
     }

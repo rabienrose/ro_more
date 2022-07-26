@@ -19,8 +19,11 @@ func act():
         state=SUCC
         return
     if repeat_routine1.state!=RUNNING:
-        repeat_routine1.reset()
-        repeat_routine1.state=RUNNING
+        if follow_routine.state==FAIL:
+            state=FAIL
+        else:
+            repeat_routine1.reset()
+            repeat_routine1.state=RUNNING
     repeat_routine1.act()
 
 func on_create(_unit):
@@ -38,6 +41,10 @@ func on_create(_unit):
     repeat_routine1=Repeat.new()
     repeat_routine1.on_create(_unit)
     repeat_routine1.routine=seq_routine
+
+func stop_routine():
+    .stop_routine()
+    repeat_routine1.stop_routine()
 
 func _notification(what):
     if what == NOTIFICATION_PREDELETE:

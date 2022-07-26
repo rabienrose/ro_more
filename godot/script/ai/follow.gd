@@ -44,6 +44,10 @@ func on_create(_unit):
     mov_routine=Move.new()
     mov_routine.on_create(_unit)
 
+func stop_routine():
+    .stop_routine()
+    mov_routine.stop_routine()
+
 func _notification(what):
     if what == NOTIFICATION_PREDELETE:
         mov_routine.free()

@@ -9,7 +9,7 @@ var block_w
 var block_h
 var cells=[]
 var free_cells=[]
-var units_root
+var mobs_root
 var players_root
 var blocks_unit=[]
 var BLOCK_SIZE=5
@@ -146,17 +146,16 @@ func char_join(char_name):
     var char_info = game.get_char_info(char_name)
     var player_res = load(Global.player_path)
     var player = player_res.instance()
-    player.on_create(self)
-    player.name=char_info["name"]
     players_root.add_child(player)
+    player.b_master=true
+    player.on_create(self, char_info)
     player.set_cell_pos(Vector2(char_info["pos_x"], char_info["pos_y"]))
-    player.init_with_info(char_info)
 
 func on_create(_game):
     game=_game
 
 func _ready():
-    units_root=get_node("Units")
+    mobs_root=get_node("Mobs")
     players_root=get_node("Players")
     var f = File.new()
     f.open(Global.map_data_path+map_name+".png", File.READ)
@@ -189,14 +188,12 @@ func _ready():
 
     var spawn_info=Config.map_info[map_name]["mobs"]
     for mob in spawn_info:
-        for i in range(mob["count"]):
-            var mob_res = load(Global.mob_res_path+"mob.tscn")
+        for _i in range(mob["count"]):
+            var mob_res = load(Global.mob_path)
             var mob_obj = mob_res.instance()
-            mob_obj.on_create(self)
-            mob_obj.init_with_info(Config.mob_info[mob["name"]])
+            mobs_root.add_child(mob_obj)
+            mob_obj.on_create(self, Config.mob_info[mob["name"]])
             var cell = get_rand_free_cell()
-            mob_obj.name=mob["name"]+"_"+str(i)
-            units_root.add_child(mob_obj)
             mob_obj.set_cell_pos(cell.pos)
 
     var save_timer=Timer.new()

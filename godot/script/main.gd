@@ -7,8 +7,6 @@ var maps_root
 var map_list=["map2"]
 var map_objs={}
 
-
-
 func _notification(what):
     if what == NOTIFICATION_PREDELETE:
         db.close_db()
@@ -36,4 +34,5 @@ func _ready():
     var re_data = db.select_rows("char", "name == '"+char_name+"'", ["map"])
     map_objs[re_data[0]["map"]].char_join(char_name)
 
-    
+func _on_AttrTab_button_down():
+    UiMsg.emit_signal("show_attribute_ui")

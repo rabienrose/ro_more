@@ -1,31 +1,25 @@
 {
-    "fire_bolt": {
-        "sp":10,
-        "atk":20,
-        "count":3,
-        "spell_time":2,
-        "delay":1,
-        "class":"single_atk"
+    "sm_sword": {
+        "max_lv":10,
+        "weapon_type":"sword",
+        "val":[4,8,12,16,20,24,28,32,36,40],
+        "class":"sk_weapon_mastery"
     },
-    "fire_blast": {
+    "sm_bash": {
+        "target_type":"other",
+        "max_lv":10,
+        "state_changes":{
+            "atk_mul":[150, 200, 250, 300, 350, 400, 450, 500, 550, 600],
+            "hit_mul":[105, 110, 115, 120, 125, 130, 135, 140, 145, 150],
+            "stun_chance":[0, 0, 0, 0, 0, 5, 10, 15, 20, 25]
+        },
         "sp":10,
-        "atk":20,
-        "count":3,
-        "spell_time":2,
-        "delay":1,
-        "class":"area_atk"
+        "p_delay":0.5,
+        "a_delay":0.5,
+        "class":"sk_melee"
     },
-    "heal": {
-        "sp":10,
-        "amount":20,
-        "spell_time":1,
-        "delay":0.5,
-        "class":"heal"
-    },
-    "sword_master": {
-        "attr":"atk",
-        "weapon":"sword",
-        "amount":20,
-        "class":"atk_modifier"
+    "sm_endure":{
+        "target_type":"self",
+        "max_lv":10
     }
 }

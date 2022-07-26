@@ -31,6 +31,11 @@ func act():
         else:
             break
 
+func stop_routine():
+    .stop_routine()
+    if cur_routine!=-1:
+        routines[cur_routine].stop_routine()
+
 func _notification(what):
     if what == NOTIFICATION_PREDELETE:
         for r in routines:

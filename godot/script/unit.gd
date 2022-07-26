@@ -4,8 +4,7 @@ class_name Unit
 
 signal on_hitted(other)
 
-export (NodePath) var hp_bar_path
-export (NodePath) var sp_bar_path
+export (NodePath) var board_path
 
 var map
 var frame_delta
@@ -32,17 +31,30 @@ var matk_min
 var matk_max
 var speed
 var aspd_rate
-var def
+var def_mul
+var def_add
 var mdef
 var blv
 var bufs={}
+var state_changes={}
+
+func add_state_change(info):
+    if info["name"] in state_changes:
+        state_changes[info["name"]].append(info)
+    else:
+        state_changes[info["name"]]=[info]
+
+func remove_state_change(info):
+    if info["name"] in state_changes:
+        state_changes[info["name"]].erase(info)
 
 func update_cam_pos(delta_p):
     pass
 
-func attack(target):
-    target.damage(3)
-    
+func do_melee_attack(target):
+    var die = target.damage(atk)
+    if die:
+        on_target_die(target)
     target.emit_signal("on_hitted",self)
     # var b_hit = StatusCal.check_hit(self,target,1)
     # if b_hit:
@@ -67,31 +79,42 @@ func _notification(what):
 func on_target_die(target):
     pass
 
+func on_die():
+    pass
+
 func damage(dmg_amount):
     hp=hp-dmg_amount
     if hp<=0:
         b_dead=true
-        map.remove_unit(self)
+        on_die()
         return true
-    update_board()
+    update_board_hp()
     return false
 
+func update_board_hp():
+    get_node(board_path).update_up(hp, max_hp)
+
+func update_board_sp():
+    get_node(board_path).update_sp(sp, max_sp)
+
+func update_board_name():
+    get_node(board_path).update_name(name)
+
 func update_board():
-    get_node(hp_bar_path).text="hp:"+str(hp)+"/"+str(max_hp)
-    get_node(sp_bar_path).text="sp:"+str(sp)+"/"+str(max_sp)
+    update_board_hp()
+    update_board_sp()
+    update_board_name()
 
 func set_cell_pos(pos_c):
     map.on_unit_cell_change(self, cur_pos, pos_c)
     cur_pos=pos_c
     position=map.pos_2_pixel(pos_c)
 
-func on_create(_map):
+func on_create(_map, info):
     map=_map
 
 func _ready():
-
     uid=Global.get_new_unit_id()
-    update_board()
 
 func add_buf(buf_name):
     var buf_obj = Global.get_buf_obj(buf_name)
@@ -108,3 +131,8 @@ func _process(delta):
         if buf.state==Buf.END:
             buf.free()
             bufs.erase(buf_name)
+
+func _on_Area_input_event(viewport:Node, event:InputEvent, shape_idx:int):
+    if event is InputEventMouseButton:
+        if event.button_index == BUTTON_RIGHT and event.is_pressed():
+            UiMsg.emit_signal("show_unit_detail",self)
