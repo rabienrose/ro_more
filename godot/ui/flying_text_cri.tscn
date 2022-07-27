@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://binary/font/QuinqueFive.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 15
+outline_size = 2
+font_data = ExtResource( 1 )
+
+[node name="hit_text" type="Label"]
+margin_left = 1.0
+margin_right = 55.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 1, 0.341176, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.882353, 0.360784, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "342"
+align = 1
+valign = 1

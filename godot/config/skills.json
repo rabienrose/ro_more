@@ -1,25 +1,23 @@
 {
-    "sm_sword": {
+    "sm_recover_hp":{
+        "title":"Recover Hp",
+        "target_type":"none",
+        "class":"sk_auto_recovery",
         "max_lv":10,
-        "weapon_type":"sword",
-        "val":[4,8,12,16,20,24,28,32,36,40],
-        "class":"sk_weapon_mastery"
+        "heal_val":[5,10,15,20,25,30,35,40,45,50]
     },
-    "sm_bash": {
-        "target_type":"other",
-        "max_lv":10,
-        "state_changes":{
-            "atk_mul":[150, 200, 250, 300, 350, 400, 450, 500, 550, 600],
-            "hit_mul":[105, 110, 115, 120, 125, 130, 135, 140, 145, 150],
-            "stun_chance":[0, 0, 0, 0, 0, 5, 10, 15, 20, 25]
-        },
-        "sp":10,
-        "p_delay":0.5,
-        "a_delay":0.5,
-        "class":"sk_melee"
-    },
-    "sm_endure":{
-        "target_type":"self",
-        "max_lv":10
+    "sm_stun":{
+        "title":"Stun",
+        "target_type":"enemy",
+        "class":"sk_stun",
+        "max_lv":5,
+        "sp_cost":10,
+        "atk_mul":2,
+        "cast_time":2000,
+        "delay":1000,
+        "range":5,
+        "cooldown":500,
+        "chance":[0.2, 0.4, 0.6, 0.8, 0.9],
+        "stun_time":[1, 1, 2, 2, 3]
     }
 }

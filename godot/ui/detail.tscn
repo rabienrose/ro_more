@@ -18,6 +18,8 @@ attr5_path = NodePath("Attr5")
 attr6_path = NodePath("Attr6")
 attr7_path = NodePath("Attr7")
 attr8_path = NodePath("Attr8")
+attr9_path = NodePath("Attr9")
+attr10_path = NodePath("Attr10")
 
 [node name="Attr1" type="Label" parent="."]
 margin_right = 200.0
@@ -85,6 +87,24 @@ valign = 1
 margin_top = 203.0
 margin_right = 200.0
 margin_bottom = 228.0
+rect_min_size = Vector2( 0, 25 )
+theme = ExtResource( 1 )
+align = 2
+valign = 1
+
+[node name="Attr9" type="Label" parent="."]
+margin_top = 232.0
+margin_right = 200.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 0, 25 )
+theme = ExtResource( 1 )
+align = 2
+valign = 1
+
+[node name="Attr10" type="Label" parent="."]
+margin_top = 261.0
+margin_right = 200.0
+margin_bottom = 286.0
 rect_min_size = Vector2( 0, 25 )
 theme = ExtResource( 1 )
 align = 2

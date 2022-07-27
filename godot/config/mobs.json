@@ -1,9 +1,10 @@
 {
     "poring": {
         "name":"poring",
-        "mov_spd":64,
-        "atk":21,
-        "hp":20,
+        "mov_spd":2,
+        "atk_min":21,
+        "atk_max":41,
+        "hp":200,
         "sp":5,
         "atk_range":1,
         "atk_spd":1,
@@ -14,7 +15,8 @@
         "matk_max":30,
         "def_mul":10,
         "def_add":2,
-        "mdef":3,
+        "mdef_mul":10,
+        "mdef_add":20,
         "lv":1,
         "baseexp":20,
         "jobexp":20,

@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://script/unit.gd" type="Script" id=1]
+[ext_resource path="res://ui/flying_text_damage.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/board.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/flying_text_miss.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/flying_text_cri.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/flying_text_heal.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0
@@ -9,13 +13,24 @@ radius = 16.0
 [node name="Unit" type="Node2D"]
 script = ExtResource( 1 )
 board_path = NodePath("Board")
-
-[node name="Board" parent="." instance=ExtResource( 3 )]
-margin_top = -70.0
+flying_text_path = NodePath("FlyingText")
+damage_text_res = ExtResource( 2 )
+cri_text_res = ExtResource( 5 )
+miss_text_res = ExtResource( 4 )
+heal_text_res = ExtResource( 6 )
 
 [node name="Area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 shape = SubResource( 1 )
+
+[node name="Board" parent="." instance=ExtResource( 3 )]
+margin_left = -40.0
+margin_top = -30.0
+margin_right = 40.0
+margin_bottom = 74.0
+
+[node name="FlyingText" type="Node2D" parent="."]
+position = Vector2( 0, -30 )
 
 [connection signal="input_event" from="Area" to="." method="_on_Area_input_event"]

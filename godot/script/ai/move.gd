@@ -14,7 +14,7 @@ func act():
         return
     var r_vec=f_pos_pixel-unit.position
     var r_dist=r_vec.length()
-    var next_mov_dist=unit.frame_delta*unit.mov_spd
+    var next_mov_dist=unit.frame_delta*unit.mov_spd*32
     if r_dist<next_mov_dist:
         state=SUCC
         unit.set_cell_pos(f_pos)

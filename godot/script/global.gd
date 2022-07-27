@@ -4,10 +4,12 @@ var map_data_path="res://binary/images/map/"
 var buf_script_path="res://script/buf/"
 var map_path="res://maps/"
 var ai_root="res://script/ai/"
+var skill_class_path="res://script/skills/"
 var config_root="res://config/"
 var body_res_path="res://units/mobs/"
 var player_path="res://units/player.tscn"
 var mob_path="res://units/mob.tscn"
+
 
 var pixel_p_cell=32
 

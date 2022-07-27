@@ -35,9 +35,9 @@ _global_script_classes=[ {
 "path": "res://script/tools/config_tools.gd"
 }, {
 "base": "Item",
-"class": "Equip",
+"class": "Equipment",
 "language": "GDScript",
-"path": "res://script/equip.gd"
+"path": "res://script/equipment.gd"
 }, {
 "base": "Routine",
 "class": "Follow",
@@ -135,7 +135,7 @@ _global_script_class_icons={
 "BufBleed": "",
 "Cell": "",
 "ConfigTools": "",
-"Equip": "",
+"Equipment": "",
 "Follow": "",
 "FollowAttack": "",
 "Idle": "",

@@ -18,6 +18,10 @@ func get_char_info(char_name):
     var re_data = db.select_rows("char", "name == '"+char_name+"'", ["*"])
     return re_data[0]
 
+func get_char_skills(char_id):
+    var re_data = db.select_rows("skill", "char_id == "+str(char_id), ["*"])
+    return re_data
+
 func _ready():
     var char_name="chamo"
     maps_root=get_node("Maps")
@@ -36,3 +40,7 @@ func _ready():
 
 func _on_AttrTab_button_down():
     UiMsg.emit_signal("show_attribute_ui")
+
+
+func _on_SkillTab_button_down():
+    UiMsg.emit_signal("show_skill_ui")

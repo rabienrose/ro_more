@@ -17,7 +17,8 @@ func _notification(what):
 func on_create(_map, info):
     .on_create(_map, info)
     mov_spd=info["mov_spd"]
-    atk=info["atk"]
+    atk_min=info["atk_min"]
+    atk_max=info["atk_max"]
     max_hp=info["hp"]
     hp=max_hp
     max_sp = info["sp"]
@@ -31,7 +32,8 @@ func on_create(_map, info):
     matk_max=info["matk_max"]
     def_add=info["def_add"]
     def_mul=info["def_mul"]
-    mdef=info["mdef"]
+    mdef_add=info["mdef_add"]
+    mdef_mul=info["mdef_mul"]
     blv=info["lv"]
     baseexp=info["baseexp"]
     jobexp=info["jobexp"]

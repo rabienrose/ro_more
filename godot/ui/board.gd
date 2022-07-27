@@ -14,10 +14,10 @@ func _ready():
     name_label=get_node(name_label_path)
 
 func update_up(hp, max_hp):
-    hp_bar.text="hp:"+str(hp)+"/"+str(max_hp)
+    hp_bar.value=floor(float(hp)/max_hp*100)
     
 func update_name(unit_name):
     name_label.text=unit_name
 
 func update_sp(sp, max_sp):
-    sp_bar.text="sp:"+str(sp)+"/"+str(max_sp)
+    sp_bar.value=floor(float(sp)/max_sp*100)
