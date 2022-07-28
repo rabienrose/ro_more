@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://tool/map_editor/map_editor.gd" type="Script" id=2]
+[ext_resource path="res://tool/map_editor/select_face_mat.tres" type="Material" id=3]
+
+[sub_resource type="Environment" id=1]
+ambient_light_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+
+[node name="Editor" type="Spatial"]
+script = ExtResource( 2 )
+sel_face_mat_res = ExtResource( 3 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="CamPlatform" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="CamPlatform"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100 )
+projection = 1
+size = 100.0
+near = 1.0
+far = 500.0
