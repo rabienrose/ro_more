@@ -3,6 +3,8 @@ aseprite
 binary
 .import
 addons
+aseprite
+blender
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

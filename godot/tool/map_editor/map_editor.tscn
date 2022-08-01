@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://tool/map_editor/menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tool/map_editor/map_editor.gd" type="Script" id=2]
 [ext_resource path="res://tool/map_editor/select_face_mat.tres" type="Material" id=3]
 
@@ -22,3 +23,8 @@ projection = 1
 size = 100.0
 near = 1.0
 far = 500.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" parent="CanvasLayer" instance=ExtResource( 1 )]
+main_path = NodePath("../..")

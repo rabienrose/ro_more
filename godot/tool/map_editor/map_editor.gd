@@ -29,6 +29,36 @@ var sel_cells={}
 
 var sel_mesh_vis=null
 
+func check_pos_in_bound(pos):
+    if pos.x<0 or pos.x>=map_w or pos.y<0 or pos.y>=map_h:
+        return false
+    else:
+        return true
+
+func set_point_hight(pos, ind, h):
+    var related_points=[]
+    if ind==0:
+        related_points=[[0, 0, 0], [-1, -1, 2], [-1, 0, 1], [0, -1, 3]]
+    elif ind==1:
+        related_points=[[0, 0, 1], [0, -1, 2], [1, -1, 3], [1, 0, 0]]
+    elif ind==2:
+        related_points=[[0, 0, 2], [1, 0, 3], [1, 1, 0], [0, 1, 1]]
+    elif ind==3:
+        related_points=[[0, 0, 3], [-1, 0, 2], [-1, 1, 1], [0, 1, 0]]
+    
+    var cell_id=pos_2_ind(pos)
+    var pt=verts[cells[cell_id]["faces"][0]["vs"][ind]]
+    for item in related_points:
+        var temp_pos=Vector2(pos.x+item[0], pos.y+item[1])
+        if check_pos_in_bound(temp_pos):
+            var temp_cell_id=pos_2_ind(temp_pos)
+            if cells[temp_cell_id]!=null:
+                var cell=cells[temp_cell_id]
+                if cell["faces"][0]!=null:
+                    var temp_pt=verts[cell["faces"][0]["vs"][item[2]]] 
+                    if abs(temp_pt.y-pt.y)<0.001:
+                        temp_pt.y=h
+
 func query_face_ray(face, from, dir):
     var v=verts[face["vs"][0]] 
     var v_r=verts[face["vs"][1]]
@@ -152,6 +182,10 @@ func update_selection():
 
 func pos_2_ind(pos):
     return pos.y*map_w+pos.x
+
+func raise_selection():
+    pass
+
 
 func _ready():
     state_space=get_world().direct_space_state

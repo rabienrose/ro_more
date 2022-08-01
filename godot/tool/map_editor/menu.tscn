@@ -1,4 +1,16 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tool/map_editor/menu.gd" type="Script" id=1]
 
 [node name="Menu" type="VBoxContainer"]
-margin_right = 100.0
+margin_right = 150.0
+margin_bottom = 600.0
+script = ExtResource( 1 )
+
+[node name="RaiseSel" type="Button" parent="."]
+margin_right = 150.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+text = "Raise Selection"
+
+[connection signal="button_down" from="RaiseSel" to="." method="_on_RaiseSel_button_down"]
